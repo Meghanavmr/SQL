@@ -242,7 +242,8 @@ group by c.name
 ;
 
 -- * 8a. In your new role as an executive, you would like to have an easy way of viewing the Top five genres by
--- gross revenue. Use the solution from the problem above to create a view. If you haven't solved 7h, you can substitute another query to create a view.
+-- gross revenue. Use the solution from the problem above to create a view. If you haven't solved 7h,
+-- you can substitute another query to create a view.
 create view top_five_genre as 
 (select c.name, SUM(p.amount)
 from category c, payment p, film_category fc, inventory i, rental r
@@ -251,6 +252,7 @@ and fc.film_id = i.film_id
 and i.inventory_id = r.inventory_id 
 and r.rental_id = p.rental_id
 group by c.name
+ORDER BY amount DESC LIMIT 5
 
 )
 
